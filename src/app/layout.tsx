@@ -13,10 +13,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <header className="bg-blue-500 text-white p-4">
           <nav className="flex gap-4">
             <Link href="/">Início</Link>
+            <Link href="/sobre">Sobre</Link>
             <Link href="/conversor-dolar">Dólar</Link>
             <Link href="/conversor-temperatura">Temperatura</Link>
             <Link href="/conversor-distancia">Distância</Link>
-            <Link href="/sobre">Sobre</Link>
           </nav>
         </header>
         <main className="p-8">{children}</main>
