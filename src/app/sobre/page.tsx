@@ -15,6 +15,7 @@ export default function Sobre() {
       </ul>
       <p className="mt-4">
         A ideia é proporcionar uma ferramenta útil e acessível, tanto para estudantes quanto para profissionais que precisam dessas conversões no dia a dia.
+        Este aplicativo foi desenvolvido por Denis como parte de um projeto de estudos em Next.js.
       </p>
     </div>
   );
