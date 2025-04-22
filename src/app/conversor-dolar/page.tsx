@@ -1,45 +1,59 @@
 'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function ConversorDolar() {
-  const cotacaoDolar = 5.16; // cotação fixa de 14/04/2025
-  const [real, setReal] = useState("");
-  const [dolar, setDolar] = useState("");
+  const [real, setReal] = useState('');
+  const [dolar, setDolar] = useState('');
 
-  const converterParaDolar = () => {
-    const valor = parseFloat(real);
-    if (!isNaN(valor)) setDolar((valor / cotacaoDolar).toFixed(2));
+  const cotacao = 5.15;
+
+  const handleRealChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setReal(value);
+    const parsed = parseFloat(value);
+    if (!isNaN(parsed)) {
+      setDolar((parsed / cotacao).toFixed(2));
+    } else {
+      setDolar('');
+    }
   };
 
-  const converterParaReal = () => {
-    const valor = parseFloat(dolar);
-    if (!isNaN(valor)) setReal((valor * cotacaoDolar).toFixed(2));
+  const handleDolarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setDolar(value);
+    const parsed = parseFloat(value);
+    if (!isNaN(parsed)) {
+      setReal((parsed * cotacao).toFixed(2));
+    } else {
+      setReal('');
+    }
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Conversor de Dólar</h1>
-      <div className="space-y-4">
+    <div className="p-4">
+      <h1 className="text-xl font-bold mb-4">Conversor de Dólar e Real</h1>
+      <div className="flex flex-col gap-4">
         <div>
-          <label>Reais (R$):</label>
+          <label className="block font-medium">Real (BRL):</label>
           <input
-            className="ml-2 p-1 border"
+            type="number"
             value={real}
-            onChange={(e) => setReal(e.target.value)}
-            onBlur={converterParaDolar}
+            onChange={handleRealChange}
+            className="border p-2 rounded w-full"
+            placeholder="Digite em R$"
           />
         </div>
         <div>
-          <label>Dólares (US$):</label>
+          <label className="block font-medium">Dólar (USD):</label>
           <input
-            className="ml-2 p-1 border"
+            type="number"
             value={dolar}
-            onChange={(e) => setDolar(e.target.value)}
-            onBlur={converterParaReal}
+            onChange={handleDolarChange}
+            className="border p-2 rounded w-full"
+            placeholder="Digite em US$"
           />
         </div>
-        <p className="text-sm text-gray-500">Cotação usada: R$ {cotacaoDolar} (14/04/2025)</p>
       </div>
     </div>
   );

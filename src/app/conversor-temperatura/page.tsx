@@ -1,57 +1,57 @@
 'use client';
 
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function ConversorTemperatura() {
-  const [celsius, setCelsius] = useState("");
-  const [fahrenheit, setFahrenheit] = useState("");
+  const [celsius, setCelsius] = useState('');
+  const [fahrenheit, setFahrenheit] = useState('');
 
-  const converterParaFahrenheit = () => {
-    const valor = parseFloat(celsius);
-    if (!isNaN(valor)) {
-      setFahrenheit(((valor * 9) / 5 + 32).toFixed(2));
+  const handleCelsiusChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setCelsius(value);
+    const parsed = parseFloat(value);
+    if (!isNaN(parsed)) {
+      setFahrenheit(((parsed * 9) / 5 + 32).toFixed(2));
+    } else {
+      setFahrenheit('');
     }
   };
 
-  const converterParaCelsius = () => {
-    const valor = parseFloat(fahrenheit);
-    if (!isNaN(valor)) {
-      setCelsius((((valor - 32) * 5) / 9).toFixed(2));
+  const handleFahrenheitChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setFahrenheit(value);
+    const parsed = parseFloat(value);
+    if (!isNaN(parsed)) {
+      setCelsius((((parsed - 32) * 5) / 9).toFixed(2));
+    } else {
+      setCelsius('');
     }
-  };
-
-  const limpar = () => {
-    setCelsius("");
-    setFahrenheit("");
   };
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-4">Conversor de Temperatura</h1>
-      <div className="space-y-4">
+    <div className="p-4">
+      <h1 className="text-xl font-bold mb-4">Conversor de Temperatura</h1>
+      <div className="flex flex-col gap-4">
         <div>
-          <label>Graus Celsius (°C):</label>
+          <label className="block font-medium">Celsius (°C):</label>
           <input
             type="number"
-            className="ml-2 p-1 border"
             value={celsius}
-            onChange={(e) => setCelsius(e.target.value)}
-            onBlur={converterParaFahrenheit}
+            onChange={handleCelsiusChange}
+            className="border p-2 rounded w-full"
+            placeholder="Digite em °C"
           />
         </div>
         <div>
-          <label>Graus Fahrenheit (°F):</label>
+          <label className="block font-medium">Fahrenheit (°F):</label>
           <input
             type="number"
-            className="ml-2 p-1 border"
             value={fahrenheit}
-            onChange={(e) => setFahrenheit(e.target.value)}
-            onBlur={converterParaCelsius}
+            onChange={handleFahrenheitChange}
+            className="border p-2 rounded w-full"
+            placeholder="Digite em °F"
           />
         </div>
-        <button onClick={limpar} className="mt-2 bg-blue-500 text-white px-3 py-1 rounded">
-          Limpar
-        </button>
       </div>
     </div>
   );
