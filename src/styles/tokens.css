@@ -1,0 +1,13 @@
+﻿:root {
+  --color-bg: #f2f7f8;
+  --color-surface: #fbfdfd;
+  --color-card: #e8f2f3;
+  --color-border: #c9dbdd;
+  --color-ink: #102a2d;
+  --color-muted: #486368;
+  --color-accent: #0f766e;
+  --color-accent-ink: #ecfeff;
+  --color-highlight: #f59e0b;
+  --radius-lg: 1rem;
+  --shadow-soft: 0 16px 40px -24px rgba(16, 42, 45, 0.35);
+}
